@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import {MainPage} from '../pages/main/main';
 import {SignUpPage} from '../pages/sign-up/sign-up';
 import {SignINPage} from '../pages/sign-in/sign-in';
-
+import{Reviews} from '../providers/reviews';
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +34,6 @@ SignINPage,
     //TabsPage,
     SignUpPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [Reviews]//[{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
