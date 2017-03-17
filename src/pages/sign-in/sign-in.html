@@ -57,8 +57,8 @@
 
 
   <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-label floating>e-mail</ion-label>
+    <ion-input [(ngModel)]="email" type="text"></ion-input>
   </ion-item>
 
 
@@ -66,12 +66,12 @@
 
   <ion-item>
     <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
   </ion-item>
 
 
 </ion-list>
-          <button ion-button [navPush]="pushPage" block>Sign In</button>
+          <button ion-button  [navPush]="push"(click)="login()" block>Sign In</button>
         </ion-card-content>
       </ion-card>
       <ion-card-header>
