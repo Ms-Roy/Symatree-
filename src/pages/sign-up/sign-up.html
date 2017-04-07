@@ -14,7 +14,7 @@
 
 
   <ion-list >
-    <ion-card>
+    <!-- <ion-card>
       <button ion-button block>
         Sign Up with Facebook
       </button>
@@ -44,7 +44,7 @@
 
 
 
-    </ion-card-header>
+    </ion-card-header> -->
 
     <ion-card>
       <ion-card-header>
@@ -56,14 +56,14 @@
                 <ion-item>
 
                   <ion-label>User Type</ion-label>
-                  <ion-select [(ngModel)]="userType">
+                  <ion-select [(ngModel)]="role">
 
                     <ion-option value="tutor">tutor</ion-option>
                     <ion-option value="student">student</ion-option>
 
                   </ion-select>
 
-                  <!-- <ion-input   [(ngModel)]="userType"  placeholder="fullName"
+                  <!-- <ion-input   [(ngModel)]="role"  placeholder="fullName"
                 formControlName="fullName" type="text" [class.invalid]="!slideOneForm.controls.fullName.valid && (slideOneForm.controls.fullName.dirty || submitAttempt)">
                   </ion-input> -->
                 </ion-item>
@@ -151,7 +151,7 @@
 
           <!-- <ion-item>
             <ion-label>User Type</ion-label>
-            <ion-select [(ngModel)]="userType">
+            <ion-select [(ngModel)]="role">
               <ion-option value="tutor">tutor</ion-option>
               <ion-option value="student">student</ion-option>
 

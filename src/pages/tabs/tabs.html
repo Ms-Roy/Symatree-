@@ -1,6 +1,21 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Profile" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Search" tabIcon="contacts"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Courses" tabIcon="contacts"></ion-tab>
+
+    <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home" [show]="!loggedIn" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Account" tabIcon="person" [show]="!loggedIn" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="information-circle" [show]="!loggedIn" (ionSelect)="refresh()"></ion-tab>
+
+    <ion-tab [root]="tab4Root" tabTitle="" tabIcon="home" [hidden]="!loggedIn" [show]="isStudent" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab8Root" tabTitle="" tabIcon="home" [show]="isTutor" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab10Root" tabTitle="" tabIcon="home" [show]="isAdmin" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab5Root" tabTitle="" tabIcon="chatbubbles" [show]="loggedIn" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab6Root" tabTitle="" tabIcon="person" [show]="loggedIn" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab11Root" tabTitle="" tabIcon="add-circle" [show]="isAdmin" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab12Root" tabTitle="" tabIcon="search" [show]="isAdmin" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab7Root" tabTitle="" tabIcon="search"[hidden]="isTutor" [show]="isStudent" (ionSelect)="refresh()"></ion-tab>
+    <ion-tab [root]="tab9Root" tabTitle="" tabIcon="clipboard" [show]="isTutor" (ionSelect)="refresh()"></ion-tab>
+    <!-- <ion-tab [root]="tab9Root" tabTitle="My Course" tabIcon="clipboard" [hidden]="!loggedIn"[show]="isTutor" (ionSelect)="refresh()"></ion-tab> -->
+
+
+
+
 </ion-tabs>

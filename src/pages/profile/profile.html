@@ -1,0 +1,139 @@
+<!--
+  Generated template for the Profile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Edit Profile
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout();">
+      Log Out
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="edit-profile-page">
+  <ion-card>
+    <ion-card-header>
+      Profile Picture
+    </ion-card-header>
+    <ion-card-content>
+      <button ion-button>
+        Add Profile Picture
+      </button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Personal Information
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+
+                <!-- <form [formGroup]="slideOneForm">
+                    <ion-item>
+                      <ion-label stacked>Full Name</ion-label>
+                      <ion-input [(ngModel)]="currentUser.fullName" placeholder="fullName"
+                    formControlName="fullName" type="text" [class.invalid]="!slideOneForm.controls.fullName.valid && (slideOneForm.controls.fullName.dirty || submitAttempt)">
+                      </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!slideOneForm.controls.fullName.valid  && (slideOneForm.controls.fullName.dirty || submitAttempt)">
+                        <p style="font-size:80%;color:red;">Enter a valid name.</p>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label stacked>Program of Study</ion-label>
+                      <ion-input [(ngModel)]="currentUser.programOfStudy" placeholder="Enter a Program"
+                    formControlName="program" type="text" [class.invalid]="!slideOneForm.controls.program.valid && (slideOneForm.controls.program.dirty || submitAttempt)">
+                      </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!slideOneForm.controls.program.valid  && (slideOneForm.controls.program.dirty || submitAttempt)">
+                        <p style="font-size:80%;color:red;">Enter a valid program name.</p>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label stacked>School</ion-label>
+                      <ion-input [(ngModel)]="currentUser.school" placeholder="Enter a School"
+                    formControlName="school" type="text" [class.invalid]="!slideOneForm.controls.school.valid && (slideOneForm.controls.school.dirty || submitAttempt)">
+                      </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!slideOneForm.controls.school.valid  && (slideOneForm.controls.school.dirty || submitAttempt)">
+                        <p style="font-size:80%;color:red;">Enter a valid School Name.</p>
+                    </ion-item>
+                  </form> -->
+        <ion-item>
+          <ion-label stacked>First Name</ion-label>
+          <ion-input type = "text" ></ion-input>
+
+
+
+          <!-- <ion-input type = "text" [ngModel]="currentUser.fullName"></ion-input> -->
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Last Name</ion-label>
+          <ion-input type = "text" ></ion-input>
+
+
+
+          <!-- <ion-input type = "text" [ngModel]="currentUser.fullName"></ion-input> -->
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Program of Study</ion-label>
+          <!-- <ion-input type = "text" [ngModel]="currentUser.programOfStudy" placeholder="Enter a Program"></ion-input> -->
+          <ion-input type = "text" ></ion-input>
+
+        </ion-item>
+        <ion-item>
+          <ion-label stacked >School</ion-label>
+          <!-- <ion-input type = "text" [ngModel]="currentUser.school"></ion-input> -->
+          <ion-input type = "text" ></ion-input>
+
+        </ion-item>
+
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Contact Information
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input type = "text" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Phone Number</ion-label>
+    <ion-input type = "text" ></ion-input>
+</ion-item>
+          <!-- <ion-input type = "email" [(ngModel)]="currentUser.email"></ion-input>
+        </ion-item> -->
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Media
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <p>Your profile has no media</p>
+        </ion-item>
+        <ion-item>
+          <button ion-button color="secondary" clear icon-left (click)="showMediaActionSheet()">
+            <ion-icon name="add"></ion-icon>
+            New Album/Video
+          </button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

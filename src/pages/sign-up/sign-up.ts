@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ValidateService} from '../../providers/validate-service';
+
 import {AuthService} from '../../providers/auth-service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
 import { AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from  '../../validators/email';
+import {NavController, NavParams, Tabs} from 'ionic-angular';
+import {TabsPage} from "../tabs/tabs";
 /*
   Generated class for the SignUp page.
 
@@ -20,20 +22,21 @@ export class SignUpPage implements OnInit {
 
     slideOneForm: FormGroup;
 
-  userType: String = "student";
-  firstName: String;
-  lastName: String;
-  email: String;
-  password: String;
+  role: string ;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 
 
   constructor(
 
-   private validateService: ValidateService,
+
   // private flashMessage:FlashMessagesService,
    private authService:AuthService,
-    public alerCtrl: AlertController,
-    public formBuilder: FormBuilder
+    public alertCtrl: AlertController,
+    public formBuilder: FormBuilder,
+    public navCtrl: NavController
   // private router: Router
   ) {
     this.slideOneForm = formBuilder.group({
@@ -51,43 +54,61 @@ export class SignUpPage implements OnInit {
   }
 
   public create(){
-    //const user = {
-      const user = {
-    userType: this.userType,
-    firstName: this.firstName,
-    lastName: this.lastName,
-    email: this.email,
-    password: this.password
-  }
-if(this.userType == undefined || this.firstName == undefined ||
-this.lastName == undefined || this.email == undefined ||
- this.password == undefined){
-   let alert = this.alerCtrl.create({
-     title: 'Error!',
-     message: 'Please Enter All Fields!',
-     buttons: ['Ok']
-   });
-   alert.present()
- }
-else {
 
-    this.authService.registerUser(user).subscribe(data => {
-      if(data.success){
+            const user = {
+            email: this.email,
+            password: this.password,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            role: this.role
+          };
 
-      console.log("Success");
-      } else {
-        console.log("fail");
-        let alert = this.alerCtrl.create({
-          title: 'Error!',
-          message: 'Please Enter All Fields!',
-          buttons: ['Ok']
-        });
-        alert.present();
+          if(user.email == undefined || user.firstName == undefined || user.password == undefined||
+             user.lastName == undefined || user.role==undefined){
+            let alert = this.alertCtrl.create({
+              title: 'ERROR!',
+              subTitle: 'Please fill in all Fields!',
+              buttons: ['OK']
+            });
+            alert.present();
+          }
+          else {
+            let successCallback = data => {
+              if(data.success){
+                console.log("success!");
+                let t : Tabs = this.navCtrl.parent;
+                t.select(0);
+                this.navCtrl.push(TabsPage);
 
-      }
-    });
+              } else {
+                console.log("fail!");
+              }
+            };
+            let errorCallback = err => {
+              console.error(err);
+              if (err.status == 409){
+                let alert = this.alertCtrl.create({
+                  title: 'Error',
+                  message: 'User already exists',
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+              else{
+                let alert = this.alertCtrl.create({
+                  title: 'Error',
+                  message: 'Cannot process your request at this time. Try again later',
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+            };
 
-}
+this.authService.attemptSignup(user.email,user.password,user.firstName,user.lastName,user.role).subscribe(successCallback, errorCallback);
+
+            }
+
+
   }
 
 

@@ -1,16 +1,10 @@
 {
   "name": "ionic-hello-world",
-  "version": "0.1.0",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
-  "engines": {
-    "node": "5.9.1",
-    "npm": "3.10.10",
-    "git": "2.10.1"
-  },
   "scripts": {
-    "start": "node app",
+    "start": "node server.js",
     "test": "mocha test",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -18,71 +12,40 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
-
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "2.2.1",
     "@angular/compiler-cli": "2.2.1",
-
+    "@angular/core": "2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/http": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
-
-    "@ionic/storage": "1.1.7",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.28.3",
-
-    "bcryptjs": "^1.0.2",
+    "@ionic/storage": "^1.1.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "codelyzer": "~2.0.0-beta.1",
-
     "cors": "^2.8.1",
-    "ejs": "2.4.1",
     "express": "^4.14.0",
-    "firebase": "^3.6.5",
     "ionic-angular": "2.0.0-rc.5",
     "ionic-native": "2.2.11",
     "ionicons": "3.0.0",
-    "jasmine-core": "2.5.2",
-    "jasmine-spec-reporter": "2.5.0",
-    "jsonwebtoken": "*",
     "jwt-simple": "^0.5.1",
-    "karma": "1.2.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-remap-istanbul": "^0.2.1",
     "mocha": "^3.2.0",
     "mongodb": "^2.2.22",
     "mongoose": "^4.8.1",
+    "ng2-translate": "^5.0.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "protractor": "~4.0.13",
-
+    "rxjs": "5.0.0-beta.12",
     "sw-toolbox": "3.4.0",
-    "ts-node": "1.2.1",
-    "tslint": "^4.3.0",
-    "typescript": "~2.0.3",
-
-    "@angular/common": "^2.3.1",
-    "@angular/compiler": "^2.3.1",
-    "@angular/core": "^2.3.1",
-    "@angular/forms": "^2.3.1",
-    "@angular/http": "^2.3.1",
-    "@angular/platform-browser": "^2.3.1",
-    "@angular/platform-browser-dynamic": "^2.3.1",
-    "@angular/router": "^3.3.1",
-    "angular2-flash-messages": "^1.0.5",
-    "core-js": "^2.4.1",
-    "rxjs": "^5.0.1",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2"
+    "uuid": "^3.0.1",
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",
     "typescript": "2.0.9"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Ms-Roy/Symatree-.git"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
@@ -92,11 +55,6 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
   "cordovaPlatforms": [
     "ios",
     {
@@ -105,6 +63,5 @@
       "locator": "ios"
     }
   ],
-  "description": "Theatres: An Ionic project",
-  "main": "app.js"
+  "description": "Symatree: An Ionic project"
 }

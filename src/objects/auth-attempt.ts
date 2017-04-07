@@ -1,7 +1,7 @@
 /**
- * Created by Pramity_Roy on 2017-02-25.
+ * Created by ericdufresne on 2017-02-06.
  */
 export class AuthAttempt{
-  success: boolean;
-  token: string;
+    success: boolean;
+    token: string;
 }

@@ -1,0 +1,139 @@
+<!--
+  Generated template for the ViewProfile page.
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+    <ion-buttons end [ngSwitch]="currentPage">
+      <button ion-button *ngSwitchCase="'my-profile'" (click)="logout();">
+        Log Out
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content >
+
+      <!-- <ion-card>
+        <ion-card-header>
+          {{currentUser.fullName}}
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+      </ion-card> -->
+      <ion-card>
+        <ion-card-header>
+          Personal Information
+        </ion-card-header>
+        <ion-card-content>
+
+          <ion-list>
+            <div *ngIf="currentUser.email">
+              <ion-item>
+                <p>First Name</p>
+                <h2>{{currentUser.firstName}}</h2>
+              </ion-item>
+              <ion-item>
+                <p>Last Name</p>
+                <h2>{{currentUser.lastName}}</h2>
+              </ion-item>
+            </div>
+
+          </ion-list>
+
+          <ion-list>
+            <div *ngIf="currentUser.programOfStudy">
+              <ion-item>
+                <p>Program Of Study</p>
+                <h2>{{currentUser.programOfStudy}}</h2>
+              </ion-item>
+            </div>
+
+          </ion-list>
+
+          <ion-list>
+            <div *ngIf="currentUser.school">
+              <ion-item>
+                <p>Program Of Study</p>
+                <h2>{{currentUser.school}}</h2>
+              </ion-item>
+            </div>
+
+          </ion-list>
+
+<!--
+          <ion-list>
+            <div *ngIf="currentUser.programOfStudy">
+              <ion-item>
+                <p>Program of Study</p>
+                <h2>{{currentUser.programOfStudy}}</h2>
+              </ion-item>
+            </div>
+            <div *ngIf="currentUser.school">
+              <ion-item>
+                <p>School</p>
+                <h2>{{currentUser.school}}</h2>
+              </ion-item>
+            </div>
+          </ion-list> -->
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Contact Information
+        </ion-card-header>
+        <ion-card-content>
+
+
+
+          <ion-list>
+            <div *ngIf="currentUser.email">
+              <ion-item>
+                <p>Email</p>
+                <h2>{{currentUser.email}}</h2>
+              </ion-item>
+            </div>
+            <div *ngIf="currentUser.phoneNumbers.length > 0">
+              <ion-item>
+                <p>Phone Number</p>
+              </ion-item>
+              <ion-item *ngFor="let phoneNumber of currentUser.phoneNumbers">
+                <p>{{phoneNumber.type}}</p>
+                <h2>{{phoneNumber.number}}</h2>
+              </ion-item>
+            </div>
+            <div *ngIf="currentUser.website">
+              <ion-item>
+                <p>Website</p>
+                <h2>{{currentUser.website}}</h2>
+              </ion-item>
+            </div>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Media
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <p>Your profile has no Picture</p>
+            </ion-item>
+          </ion-list>
+            <!-- <button (click)="create()"  ion-button id="signUp"   block>Edit</button> -->
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+
+            <button (click)="goToEditPage();"  ion-button id="signUp"   block>Edit Profile</button>
+
+      </ion-card>
+</ion-content>

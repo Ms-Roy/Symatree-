@@ -1,62 +1,78 @@
-/**
- * Created by Pramity_Roy on 2017-02-22.
- */
 //server.js
 
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./config/database');
+var express = require('express');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var app = express();
+var mongoose = require('mongoose');
+var passport = require('passport');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+var User = require('./api/db/schema/user.js').User;
+var jwt = require('jwt-simple');
+var http = require('http');
 
+var authRoutes = require('./api/routes/auth-routes');
+var connectionRoutes = require('./api/routes/connection-routes');
+var userRoutes = require('./api/routes/user-routes');
+var adminRoutes = require('./api/routes/admin-routes');
 
-mongoose.Promise = global.Promise;
-// Connect To Database
-mongoose.connect(config.database);
-
-// On Connection
-
-mongoose.connection.on('connected', () => {
-  console.log('Connected to database '+config.database);
-});
-
-// On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error: '+err);
-});
-
-const app = express();
-
-const users = require('./routes/users');
-
-// Port Number
-const port = 3000;
-
-// CORS Middleware
-app.use(cors());
-
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Body Parser Middleware
 app.use(bodyParser.json());
-
-// Passport Middleware
+app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
+app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 app.use(passport.initialize());
-app.use(passport.session());
 
-require('./config/passport')(passport);
+app.use('/', authRoutes);
+app.use('/', connectionRoutes);
 
-app.use('/users', users);
+app.use('/', userRoutes);
 
-// Index Route
-app.get('/', (req, res) => {
-  res.send('Invalid Endpoint');
+app.use('/', adminRoutes);
+
+app.settings.env = app.settings.env || 'production';
+
+var config = require('./api/config').config;
+
+var secret = config[app.settings.env].jwtSecret;
+var MONGODB_URI = config[app.settings.env].mongodbURI;
+var port = process.env.PORT || config[app.settings.env].port;
+
+var opts = {};
+opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+opts.secretOrKey = secret;
+passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
+    User.find({id: jwt_payload.id}, function (err, user) {
+        if (err){
+            return done(err, false);
+        }
+        if (user){
+            return done(null, user);
+        }
+        else{
+            return done(null, false);
+        }
+    });
+}));
+
+if (app.settings.env == 'development'){
+    mongoose.set('debug', true);
+}
+mongoose.connect(MONGODB_URI, function (err, res) {
+    if (err){
+        console.log('Cannot connect to database: '+MONGODB_URI);
+        process.exit(0);
+    }
+    else if (app.settings.env != 'test'){
+        console.log('Connected to database: '+MONGODB_URI);
+    }
 });
 
-// Start Server
-app.listen(port, () => {
-  console.log('Server started on port '+port);
+var server = http.createServer(app);
+server.listen(port, function () {
+    if (app.settings.env != 'test'){
+        console.log('Server listening on port 8080');
+    }
 });
+
+
+module.exports = app;
