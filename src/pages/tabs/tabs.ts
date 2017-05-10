@@ -14,6 +14,8 @@ import {AdminHomePage} from "../admin-home/admin-home";
 import {AdminSearchPage} from '../admin-search/admin-search';
 import {MyCoursePage} from '../my-course/my-course';
 import {ViewProfilePage} from "../view-profile/view-profile";
+// import {StudentCourseDetailPagePage} from '../student-course-detail-page/student-course-detail-page';
+import {ListStudentCoursePage} from '../list-student-course/list-student-course';
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -30,7 +32,8 @@ tab6Root: any = ViewProfilePage;
 
 //Student View
   tab4Root: any = MyHomePage;
-  tab7Root: any = SearchCoursePage;
+  // tab7Root: any = SearchCoursePage;
+  tab7Root: any = ListStudentCoursePage;
 ///tutor
  tab8Root: any = TutorHomePage;
  tab9Root: any = MyCoursePage;

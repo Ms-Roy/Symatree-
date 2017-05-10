@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>my-course</ion-title>
+    <ion-title>Teach Courses</ion-title>
+    <ion-buttons end [ngSwitch]="currentPage" (click)="showCoursesAvailable();">
+      <button ion-button  >
+        +ADD
+      </button>
+
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
 
 </ion-content>

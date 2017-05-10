@@ -14,10 +14,17 @@ var UserSchema = new Schema({
         unique: true,
         required: true
     },
-    role: {
-        type: String,
-        required: true 
+    pictureURL: {
+        type: String
     },
+    bio : {
+        type: String
+    },
+    role: {
+      type: String,
+      required: true
+    },
+
     password: {
         type: String,
         required: true
@@ -30,6 +37,7 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
+
     phoneNumbers: {
         type: [Schema.Types.Mixed]
     },

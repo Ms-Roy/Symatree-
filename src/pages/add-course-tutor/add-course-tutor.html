@@ -1,0 +1,119 @@
+<!--
+  Generated template for the AddCourseTutor page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>addCourseTutor</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+</ion-content> -->
+
+
+<!-- <ion-header>
+
+    <ion-navbar>
+        <ion-title>Teach Course</ion-title>
+
+    </ion-navbar>
+
+    <ion-header>
+      <ion-navbar>
+        <ion-title>
+          Edit Course
+        </ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="save();">
+            Save
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content padding>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label stacked>Course Code:</ion-label>
+          <ion-input  [(ngModel)]="course.code" placeholder="Enter the course code"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label stacked>Course Price</ion-label>
+          <ion-input [(ngModel)]=price placeholder="Enter hourly course price"></ion-input>
+        </ion-item>
+
+
+
+        <ion-item>
+          <ion-label stacked>Course Form</ion-label>
+          <ion-textarea rows="4" [(ngModel)]=form placeholder="Enter service type (one-to-one or peer session)" required></ion-textarea>
+        </ion-item>
+
+
+      </ion-list>
+    </ion-content> -->
+
+    <ion-header>
+      <ion-navbar>
+        <ion-title>
+          Edit Course
+        </ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="save(course);">
+            Save
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content padding>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label stacked>Course Code:</ion-label>
+          <ion-input  [(ngModel)]="course.code" placeholder="Enter the course code"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Course Id:</ion-label>
+          <ion-input  [(ngModel)]="course._id" placeholder="Enter the course code"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Course Price</ion-label>
+          <ion-input [(ngModel)]=price placeholder="Enter the hourly price($)"></ion-input>
+        </ion-item>
+
+        <!-- <ion-item>
+          <ion-label stacked>Course School</ion-label>
+          <ion-input [(ngModel)]="course.school" placeholder="Enter Course School" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Course Semester</ion-label>
+          <ion-input [(ngModel)]="course.semester" placeholder="Enter Course Semester" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Course Year</ion-label>
+          <ion-input [(ngModel)]="course.year" placeholder="Enter Course Year" required></ion-input>
+        </ion-item> -->
+
+        <ion-item>
+          <ion-label stacked>Type Of Service(s) offered</ion-label>
+          <ion-textarea rows="4" [(ngModel)]=form placeholder="(e.g. one-to-one session or peer session)" required></ion-textarea>
+        </ion-item>
+
+
+      </ion-list>
+    </ion-content>

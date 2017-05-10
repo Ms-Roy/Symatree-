@@ -60,7 +60,7 @@ export class AuthService {
     observable.subscribe(successHandler, errorHandler);
     return observable;
   }
-  public attemptSignup(email: string, password: string, firstName: string, lastName: string, role:string) : Observable<AuthAttempt>{
+  public attemptSignup(email: string, password: string, firstName: string, lastName: string, role: string) : Observable<AuthAttempt>{
     let body = {
       email: email,
       password: password,

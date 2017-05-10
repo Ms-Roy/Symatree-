@@ -1,0 +1,100 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Edit Course
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save();">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Course Code:</ion-label>
+      <ion-input  [(ngModel)]="course.code" placeholder="Enter the course code"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label stacked>Course Name</ion-label>
+      <ion-input [(ngModel)]="course.name" placeholder="Enter the course name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Course School</ion-label>
+      <ion-input [(ngModel)]="course.school" placeholder="Enter Course School" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Course Semester</ion-label>
+      <ion-input [(ngModel)]="course.semester" placeholder="Enter Course Semester" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Course Year</ion-label>
+      <ion-input [(ngModel)]="course.year" placeholder="Enter Course Year" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Course Description</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="course.description" placeholder="Enter Course Description (Optional)" required></ion-textarea>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+<!-- <ion-header>
+
+    <ion-navbar>
+        <ion-title>Course Info</ion-title>
+
+
+</ion-header>
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>Course Information:</ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item icon-left>
+
+                    <h3>Course Code:</h3>
+                    {{course.code}}
+                </ion-item>
+                <ion-item icon-left>
+                    <h3>Course Name:</h3>
+                    {{course.name}}
+                </ion-item>
+                <ion-item icon-left>
+                    <h3>Course School:</h3>
+                  {{course.school}}
+                </ion-item>
+
+                <ion-item icon-left>
+                    <h3>Course Semester:</h3>
+                  {{course.semester}}
+                </ion-item>
+
+                <ion-item icon-left>
+                    <h3>Course Year:</h3>
+                  {{course.year}}
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+        <ion-card-content>
+            <ion-list>
+                <ion-card-header>Course Description:</ion-card-header>
+                <ion-item>
+                    {{course.description}}
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content> -->

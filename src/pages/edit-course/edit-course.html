@@ -1,180 +1,64 @@
-<!--
-  Generated template for the EditCourse page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
+  <ion-navbar>
+
+    <ion-buttons end [ngSwitch]="currentPage">
+      <button ion-button (click)="ViewCourse();">
+        View Courses
+      </button>
+      <!-- <ion-buttons end (click)="logout();" *ngSwitchCase="'my-profile'">
+        <ion-icon  name="log-out" color="danger"></ion-icon>
+      </ion-buttons> -->
+
+    </ion-buttons>
+  </ion-navbar>
 
   <ion-navbar>
-    <ion-title> Symatree</ion-title>
+    <ion-title>Create Course</ion-title>
   </ion-navbar>
-  <ion-buttons end>
-    <button ion-button (click)="ViewCourse();">
-    View Courses
-    </button>
-  </ion-buttons>
-
-
-  <ion-list >
-
-
-    <ion-card>
-      <ion-card-header>
-      Create Course
-      </ion-card-header>
-      <ion-card-content>
-
-
-
-                <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
-
-                  <ion-list no-lines>
-
-                      <form [formGroup]="slideOneForm">
-
-
-
-                  <!-- <ion-item>
-                      <ion-label floating>Full Name</ion-label>
-                      <ion-input formControlName="fullName" type="text" [class.invalid]="!slideOneForm.controls.fullName.valid && (slideOneForm.controls.fullName.dirty || submitAttempt)"></ion-input>
-                  </ion-item> -->
-
-                  <ion-item>
-                    <ion-input   [(ngModel)]="code"  placeholder="Course Code"
-                  formControlName="code" type="text" [class.invalid]="!slideOneForm.controls.code.valid && (slideOneForm.controls.code.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.code.valid  && (slideOneForm.controls.code.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid code.</p>
-                  </ion-item>
-
-                  <ion-item>
-                    <ion-input   [(ngModel)]="name"  placeholder="Course Name"
-                  formControlName="name" type="text" [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.name.valid  && (slideOneForm.controls.name.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid name.</p>
-                  </ion-item>
-
-                  <ion-item>
-                    <ion-input   [(ngModel)]="school"  placeholder="School"
-                  formControlName="school" type="text" [class.invalid]="!slideOneForm.controls.school.valid && (slideOneForm.controls.school.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.school.valid  && (slideOneForm.controls.school.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid name.</p>
-                  </ion-item>
-
-
-                  <ion-item>
-                    <ion-input   [(ngModel)]="professor"  placeholder="Profoessor"
-                  formControlName="professor" type="text" [class.invalid]="!slideOneForm.controls.professor.valid && (slideOneForm.controls.professor.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.professor.valid  && (slideOneForm.controls.professor.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid professor name.</p>
-                  </ion-item>
-
-
-
-                  <ion-item>
-                    <ion-input   [(ngModel)]="semester"  placeholder="semester"
-                  formControlName="semester" type="text" [class.invalid]="!slideOneForm.controls.semester.valid && (slideOneForm.controls.semester.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.semester.valid  && (slideOneForm.controls.semester.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid semester.</p>
-                  </ion-item>
-                  <ion-item>
-
-                    <ion-input   [(ngModel)]="year"  placeholder="year"
-                  formControlName="year" type="text" [class.invalid]="!slideOneForm.controls.year.valid && (slideOneForm.controls.year.dirty || submitAttempt)">
-                    </ion-input>
-                  </ion-item>
-
-                  <ion-item *ngIf="!slideOneForm.controls.year.valid  && (slideOneForm.controls.year.dirty || submitAttempt)">
-                      <p style="font-size:80%;color:blue;">Enter a valid year.</p>
-                  </ion-item>
-
-
-
-
-              </form>
-
-          </ion-list>
-  <button (click)="create()"  ion-button id="signUp"   block>Create</button>
-
-
-        <!-- <ion-list>
-
-          <!-<ion-item>-->
-            <!--<ion-label floating>User Type</ion-label>-->
-            <!--<ion-input type="text"></ion-input>-->
-          <!--</ion-item>-->
-
-          <!-- <ion-item>
-            <ion-label>User Type</ion-label>
-            <ion-select [(ngModel)]="userType">
-              <ion-option value="tutor">tutor</ion-option>
-              <ion-option value="student">student</ion-option>
-
-            </ion-select>
-          </ion-item>
-
-
-
-          <ion-item>
-            <ion-label floating> First Name </ion-label>
-            <ion-input [(ngModel)]="code" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Last Name </ion-label>
-            <ion-input [(ngModel)]="school" type="text"></ion-input>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-label floating>E-mail</ion-label>
-            <ion-input [(ngModel)]="email" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input [(ngModel)]="password" type="password"></ion-input>
-          </ion-item>
-
-
-        </ion-list>
-        <button ion-button (click)="create()" block>Sign Up</button> -->
-      </ion-card-content>
-    </ion-card>
-    <ion-card-header>
-
-
-
-
-
-
-
-    </ion-card-header>
-
-
-
-
-  </ion-list>
-
-
 </ion-header>
 
+<ion-content >
 
-<ion-content padding>
+  <ion-card>
+    <ion-card-header>Course Info</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>Course Code</ion-label>
+          <ion-input [(ngModel)]="code" required placeholder="Enter Course Code"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Course Name</ion-label>
+          <ion-input [(ngModel)]="name" required placeholder="Enter Course Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Course Description</ion-label>
+          <ion-textarea rows="4" [(ngModel)]="description" placeholder="Enter Description" required></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>School</ion-label>
+          <ion-input [(ngModel)]="school" placeholder="Enter School"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Professor</ion-label>
+          <ion-input [(ngModel)]="professor" placeholder="Enter Professor" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Semester</ion-label>
+          <ion-input [(ngModel)]="semester" placeholder="Enter semester"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Year</ion-label>
+          <ion-input [(ngModel)]="year" placeholder="Enter Year"></ion-input>
+        </ion-item>
 
+        <ion-item padding>
+          <button ion-button block color="primary" (click)="submitCourse()">
+            Create Course
+          </button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

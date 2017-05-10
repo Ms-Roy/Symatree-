@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
 import {User} from "../objects/user";
 import {Storage} from "@ionic/storage";
-import {Language} from "../objects/language";
+// import {Language} from "../objects/language";
 import {Course} from "../objects/course";
 
 /*
@@ -18,17 +18,17 @@ import {Course} from "../objects/course";
 export class UserService {
   userGetEndpoint : string = 'http://localhost:8080/api/users/';
   userPutEndpoint : string = 'http://localhost:8080/api/user';
-courseEndpoint : string = 'http://localhost:8080/api/courses';
-  languageEndpoint : string = 'http://localhost:8080/api/languages';
+  courseEndpoint :   string = 'http://localhost:8080/api/courses';
+  // languageEndpoint : string = 'http://localhost:8080/api/languages';
 
   constructor(public http: Http, public storage : Storage) {
   }
   public listcourses() : Observable<Course[]>{
     return this.http.get(this.courseEndpoint).map(res => res.json()).catch(this.handleError);
   }
-  public listLanguages() : Observable<Language[]>{
-  return this.http.get(this.languageEndpoint).map(res => res.json()).catch(this.handleError);
-}
+//   public listLanguages() : Observable<Language[]>{
+//   return this.http.get(this.languageEndpoint).map(res => res.json()).catch(this.handleError);
+// }
   // public listGenres() : Observable<Genre[]>{
   //   return this.http.get(this.genreEndpoint).map(res => res.json()).catch(this.handleError);
   // }
@@ -54,12 +54,12 @@ courseEndpoint : string = 'http://localhost:8080/api/courses';
     observable.subscribe(successHandler, errorHandler);
     return observable;
   }
-  public headersForToken(token : string) : any{
-    return {
-      headers: {
-        'theaters-auth': token
+  public headersForToken(token: string): any {
+      return {
+          headers: {
+              'symatree-auth': token
+          }
       }
-    }
   }
   public handleError(err){
     let errBody = err.json();

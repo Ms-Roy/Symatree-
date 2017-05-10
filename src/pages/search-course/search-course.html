@@ -8,6 +8,16 @@
 
   <ion-navbar>
     <ion-title>Search Course</ion-title>
+    <ion-buttons end [ngSwitch]="currentPage">
+      <button ion-button (click)="listCourse()">
+        +ADD
+      </button>
+      <!-- <ion-buttons end (click)="logout();" *ngSwitchCase="'my-profile'">
+        <ion-icon  name="log-out" color="danger"></ion-icon>
+      </ion-buttons> -->
+
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>

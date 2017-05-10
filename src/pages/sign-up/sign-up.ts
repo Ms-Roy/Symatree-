@@ -44,7 +44,7 @@ export class SignUpPage implements OnInit {
           //  username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')]), UsernameValidator.checkUsername],
            email:['',EmailValidator.checkEmail],
            firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern("[a-zA-Z-' ]*"), Validators.required])],
-           lastName:  ['', Validators.compose([Validators.maxLength(30), Validators.pattern("[a-zA-Z-' ]*"), Validators.required])],
+        lastName:  ['', Validators.compose([Validators.maxLength(30), Validators.pattern("[a-zA-Z-' ]*"), Validators.required])],
            password: ['', Validators.compose([Validators.minLength(6),  Validators.required])]
        });
 
@@ -63,8 +63,8 @@ export class SignUpPage implements OnInit {
             role: this.role
           };
 
-          if(user.email == undefined || user.firstName == undefined || user.password == undefined||
-             user.lastName == undefined || user.role==undefined){
+          if(user.email == undefined || user.firstName == undefined || user.lastName ==undefined|| user.password == undefined||
+            user.role==undefined){
             let alert = this.alertCtrl.create({
               title: 'ERROR!',
               subTitle: 'Please fill in all Fields!',
@@ -104,7 +104,7 @@ export class SignUpPage implements OnInit {
               }
             };
 
-this.authService.attemptSignup(user.email,user.password,user.firstName,user.lastName,user.role).subscribe(successCallback, errorCallback);
+this.authService.attemptSignup(user.email,user.password,user.firstName, user.lastName, user.role).subscribe(successCallback, errorCallback);
 
             }
 

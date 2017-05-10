@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 
 import {EditLanguagePage} from "../edit-language/edit-language";
 import {AuthService} from "../../providers/auth-service";
-import {UserService} from "../../providers/user-service";
-import {AdminService} from "../../providers/admin-service";
+// import {UserService} from "../../providers/user-service";
+import {CourseService} from "../../providers/course-service";
 import {NavController, NavParams, ViewController,AlertController} from 'ionic-angular';
 import {User} from "../../objects/user";
 import {Course} from "../../objects/course";
+import {UserService} from '../../providers/user-service';
+import {UpdateCoursesPage} from '../update-courses/update-courses';
+
 
 /*
   Generated class for the ListCourse page.
@@ -17,30 +20,20 @@ import {Course} from "../../objects/course";
 @Component({
   selector: 'page-list-course',
   templateUrl: 'list-course.html',
-    providers: [AuthService, UserService, AdminService]
+    providers: [AuthService,  CourseService, UserService]
 })
 export class ListCoursePage {
+
   public currentUser: User = new User();
   public courses : Course[] = [];
   id: string;
   Courses;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authService: AuthService, public userService: UserService,
- public adminService: AdminService, public viewCtrl:ViewController,
- public alertCtrl: AlertController) {
+  public authService: AuthService,
+ public courseService: CourseService, public viewCtrl:ViewController,
+ public alertCtrl: AlertController, public userService: UserService) {
 
-    this.authService.getCurrentUser(data =>{
-      this.currentUser = data;
-      this.userService.getUser( this.currentUser._id);
-  //    this.userService.getUser (this.currentUser._id);
-////   this.userService.listCountries();
-this.userService.listcourses().subscribe(data => {
-  this.courses = data;
-});
-
-/////this.countries = Countries;
-
-    });
 
   }
 
@@ -48,63 +41,49 @@ this.userService.listcourses().subscribe(data => {
     console.log('ionViewDidLoad ViewCountryPage');
   }
   ionViewWillEnter(){
-    this.authService.getCurrentUser(data =>{
-        this.currentUser = data;
-        this.userService.getUser( this.currentUser._id);
-        this.userService.listcourses().subscribe(data => {
-          this.courses = data;
+    this.userService.listcourses().subscribe((data) => {
+    this.courses = data;
+  });
 
-        });
-      });
   }
 
   public delete(course) {
+  this.Courses = course;
+    let modal = this.alertCtrl.create({
+      title: 'Delete "'+this.Courses.code+'"?',
 
-    this.Courses = course;
-    console.log(this.Courses.code);
 
-    this.authService.getCurrentUser((data) => {
-      if (!data){
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            //Do nothing
+            console.log('Doing Nothing');
+          }
+        },
+        {
+          text: 'Confirm',
+          role: 'confirm',
+          handler: data=>{
+            this.courseService.deleteCourse(course, this.authService.getAccessToken()).subscribe(data => {
+              this.courses = this.courses.filter(item => {return item !== course});
+            }, err => {console.error(err)});
 
-      }
-      else{
-
-        if(data.role =="admin") {
-
-          let successHandler = data => {
-            this.viewCtrl.dismiss(data).catch(err => {
-              console.error(err);
-            })
-          };
-          let errorHandler = err => {
-            console.log(err);
-
-          };
-
-           //////console.log(data._id);
-          //  this.adminService.createCountry(this.Countries,this.authService.getAccessToken());
-          let alert = this.alertCtrl.create({
-              title: 'Success: Course Deleted!',
-              subTitle: 'Code '+this.Courses.code+' is deleted',
-              buttons: ['OK']
-      });
-      alert.present();
-          this.adminService.deleteCourse(this.Courses._id,this.authService.getAccessToken()).subscribe(successHandler, errorHandler);
-          this.navCtrl.push(ListCoursePage).catch(err => {
-            console.error(err);
-          });
-
-           //this.adminService.createCountry(this.Countries,data._id);
+          }
         }
-      }
+      ]
     });
+    modal.present();
 
 
-
-    console.log( "Added: "+this.Courses.langugae);
 }
 
-
+update(course){
+  this.navCtrl.push(UpdateCoursesPage).catch(err => {
+      console.error(err);
+    });
+}
 
 
 

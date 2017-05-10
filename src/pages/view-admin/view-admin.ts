@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {EditCoursePage} from '../edit-course/edit-course';
+import {EditTutorPage} from '../edit-tutor/edit-tutor';
+import {UpdateCoursesPage} from '../update-courses/update-courses';
+//import {ListCoursePage} from '../list-course/list-course';
 /*
   Generated class for the ViewAdmin page.
 
@@ -24,4 +27,17 @@ public editCourse (){
     });
 
 }
+public editTutor (){
+  this.navCtrl.push(EditTutorPage).catch(err => {
+      console.error(err);
+    });
+
+}
+
+public updateCourse(){
+  this.navCtrl.push(UpdateCoursesPage).catch(err => {
+      console.error(err);
+    });
+}
+
 }

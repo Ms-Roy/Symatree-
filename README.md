@@ -1,25 +1,47 @@
-                          
-                                                    #Symatree 
-_____________________________________________________________________________________________________________________________
-                                            ##The Tree of Mathematics and Science 
-______________________________________________________________________________________________________________________________
+# Theatres
+Develop
 
-The main purpose for this project is to develop a mobile application for tutoring services within the University of Ottawa.
-Students enrolled in an university often finds difficulty in many courses and are often discouraged to seek help due to limited resources available 
-within the university.This application will be advantageous to students who wants to make cash by being a tutor in a course they
-have excelled in and to those students who have difficulty in the course materials and are seeking tutors at a flexible price and
-suitable time. Symatree provides one-to-one session, group-session and instant help. Prices therefore differs based on the services
-to be provided. One-to-One session allows students and tutors to find a suitable time for tutoring session only between the student 
-and the tutor at any places within the campus. Group session on the other hand will provide a tutoring session between many students
-and only one tutor at a suitable time at any places within the campus. Instant help however is where the student requests help now at 
-a desired location (such as their residence) and the tutor will drive/travel at the destination within two hour period. Instant help
-therfore will be the most expensive deal for the student, with one-to-one session being the next priciest deal and the cheapest will
-therefore be the group-session. Payment is therefore mandatory and will be done via credit card and the payment should be deposit to 
-the client bank account directly.
+[![Build Status](https://travis-ci.com/almawhoob/theaters.svg?token=h6gyABY5M2Co4eo1tVpC&branch=develop)](https://travis-ci.com/almawhoob/theaters)
 
-Symatree is unique because we understand the importance of course context and how it can differ largely between university to 
-university and thus it forces tutors to be within the university. Having tutors within the university because students seeks 
-for students who have knowledge for that specific course being taught in the past, preferbly had the same professor so they 
-can seek tips on how to master the course. Symatree therefore will first focus in University of ottawa and soon will grow 
-in Canada and next will provide services internationally.  
- 
+Master
+
+[![Build Status](https://travis-ci.com/almawhoob/theaters.svg?token=h6gyABY5M2Co4eo1tVpC&branch=master)](https://travis-ci.com/almawhoob/theaters)
+
+Repository for 4th year capstone project.
+
+We are building a platform that is similar to LinkedIn but customized to serve the production industry. Members, who would be theatrical organizations and companies, will be able to publish their pages and offer their services if available. Companies can communicate with Art performers and hire them for a particular show for a specific time. Contract templates will be available and their stamped contract should be uploaded to the system. Their communication should also be as messages within the system. The system should facilitate Multilanguage (English – Arabic) is enough but the possibility to have Spanish and France is a future goal. Payment is also mandatory (PayPal, Visa, SADAD) and the payment should be deposit to the client bank account directly.
+On the other side, I need to publish upcoming or ongoing events with the possibility to purchase tickets. Media section also needed where we can publish links to theater show after gaining the proper approvals. News module can be distributed among subscribed companies and allow them to publish their news. So we have level of access and publishing approval cycle.
+
+
+## Dependencies
+- Node.js v6 https://nodejs.org/en/
+- Ionic v2 https://ionicframework.com/getting-started/
+
+## Getting Started
+- Clone the repository
+
+For Windows:
+- Install Cordova  <code>npm install -g ionic cordova</code> 
+- Install the ionic CLI (<code>npm install -g ionic</code>)'
+- Run <code>npm install</code> from the project root
+- Run <code>ionic serve</code> from the project root
+
+For Mac: you might need to add <code>sudo</code> (e.g. sudo npm i)
+
+
+## Adding Platforms
+- android: <code>ionic platform add android</code>
+- ios: <code>ionic platform add ios</code>
+
+## Ionic Commands
+- Create a new page: <code>ionic g page pageName</code>
+- Create a new provider: <code>ionic g provider providerNameData</code>
+- Create a new pipe: <code>ionic g pipe pipeNamePipe</code>
+- Build an android apk: <code>ionic build android</code>
+
+## Deployment
+Application will be deployed on Heroku with Node.js. Documentation can be found here: https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction
+
+## Documentations
+- mLab MongoDB: https://devcenter.heroku.com/articles/mongolab
+- Node.js on Heroku: https://devcenter.heroku.com/categories/nodejs
