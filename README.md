@@ -1,4 +1,4 @@
-# Theatres
+# Symatree
 Develop
 
 [![Build Status](https://travis-ci.com/almawhoob/theaters.svg?token=h6gyABY5M2Co4eo1tVpC&branch=develop)](https://travis-ci.com/almawhoob/theaters)
@@ -7,11 +7,13 @@ Master
 
 [![Build Status](https://travis-ci.com/almawhoob/theaters.svg?token=h6gyABY5M2Co4eo1tVpC&branch=master)](https://travis-ci.com/almawhoob/theaters)
 
-Repository for 4th year capstone project.
+The main purpose for this project is to develop a mobile application for tutoring services within the University of Ottawa. Students enrolled in an university often finds difficulty in many courses and are often discouraged to seek help due to limited resources available within the university. Mainly, every student has at least once experienced their professor and/or teaching assistant to lack quality in teaching. Low quality teaching results poor gain in knowledge and thus outcomes many students to either fail or do poorly in a course regardless of the ease of the material. Therefore, it raises our attention to find a solution and hence make an application that allows students to get access to tutors that have excelled in the particular course(s) they are currently struggling with.
 
-We are building a platform that is similar to LinkedIn but customized to serve the production industry. Members, who would be theatrical organizations and companies, will be able to publish their pages and offer their services if available. Companies can communicate with Art performers and hire them for a particular show for a specific time. Contract templates will be available and their stamped contract should be uploaded to the system. Their communication should also be as messages within the system. The system should facilitate Multilanguage (English – Arabic) is enough but the possibility to have Spanish and France is a future goal. Payment is also mandatory (PayPal, Visa, SADAD) and the payment should be deposit to the client bank account directly.
-On the other side, I need to publish upcoming or ongoing events with the possibility to purchase tickets. Media section also needed where we can publish links to theater show after gaining the proper approvals. News module can be distributed among subscribed companies and allow them to publish their news. So we have level of access and publishing approval cycle.
+Tut, will allow students to either take advantage of courses they have excelled in and earn money electronically by becoming a tutor, or pay tutors by learning and getting help from them regarding course materials. This mobile application hence varies for the two types of users: tutors and students. In addition, Tut allows the opportunity for a user to be both tutor and student.  
 
+Tut however makes a restriction for becoming a tutor for security reasons and therefore is controlled by the system administrator. The system admin must assess and access the required documents such as transcripts and police records, and decide whether an individual is qualified to be a tutor. Upon meeting the minimum requirements, an individual can be registered to tutor a particular course. On the other hand, upon creating an account, a user entitled as a student, can navigate and browse through the application at free cost and check for available tutors for a specific course. If available, students can then either sign-up for one to one session online or in-person meeting or group sessions that could be either on-line or in-person. In addition, payment and money is transferred only after when a meeting has been done successfully between a tutor and a student.
+
+There already exists a variety of tutorial applications but however courses vary from universities based on the context. Therefore, it is the only application existing where the context is controlled since both the student and the tutor have learned the same materials or even had the same professor. Also, most application does not provide the opportunity for students to be able to request a tutor right away at the place of their desired location (e.g their house) and with this application, it is very much possible to do just as how Uber eats work. This application will therefore be the most efficient tutoring application existing since it connects both the student and the tutor effectively, making learning more enjoyable and resulting excellent grades.
 
 ## Dependencies
 - Node.js v6 https://nodejs.org/en/
@@ -21,7 +23,7 @@ On the other side, I need to publish upcoming or ongoing events with the possibi
 - Clone the repository
 
 For Windows:
-- Install Cordova  <code>npm install -g ionic cordova</code> 
+- Install Cordova  <code>npm install -g ionic cordova</code>
 - Install the ionic CLI (<code>npm install -g ionic</code>)'
 - Run <code>npm install</code> from the project root
 - Run <code>ionic serve</code> from the project root
