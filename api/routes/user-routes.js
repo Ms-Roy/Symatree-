@@ -1,4 +1,9 @@
-
+/**
+ * Created by ericdufresne on 2017-02-10.
+ */
+/**
+ * Created by ericdufresne on 2017-02-10.
+ */
 var express = require('express');
 var router = express.Router();
 var app = express();
@@ -10,7 +15,7 @@ var handlers = require('../helpers/handlers');
 var secret = config[app.settings.env].jwtSecret;
 
 var Course= require('../db/schema/course').Course;
-// var Language = require('../db/schema/language').Language;
+var Language = require('../db/schema/language').Language;
 
 
 router.get('/api/users/:id', function (req, res) {
@@ -60,7 +65,19 @@ router.put('/api/user', function (req, res) {
         });
     });
 });
-
+// router.get('/api/countries', function (err, res) {
+//     var query = Country.find({});
+//
+//     query.exec(function (err, countries) {
+//         if (err){
+//             handlers.handleError(res, err);
+//         }
+//         else{
+//             handlers.handleSuccess(res, countries, 'Countries query executed', 200);
+//         }
+//     });
+// });
+//
 router.get('/api/courses', function (req, res) {
     var query = Course.find({});
     console.log("HERES");
@@ -74,5 +91,43 @@ router.get('/api/courses', function (req, res) {
     });
 });
 
+router.get('/api/languages', function (req, res) {
+    var query = Language.find({});
+    query.exec(function (err, languages) {
+        if (err){
+            handlers.handleError(res, err);
+        }
+        else{
+            handlers.handleSuccess(res, languages, 'Language query executed', 200);
+        }
+    });
+});
+
+
+
+//
+// router.get('/api/genres', function (req, res) {
+//     var query = Genre.find({});
+//     query.exec(function (err, genres) {
+//         if (err){
+//             handlers.handleError(res, err);
+//         }
+//         else{
+//             handlers.handleSuccess(res, genres, 'Genre query executed', 200);
+//         }
+//     });
+// });
+//
+// router.get('/api/audiences', function (req, res) {
+//     var query = Audience.find({});
+//     query.exec(function (err, audiences) {
+//         if (err){
+//             handlers.handleError(res, err);
+//         }
+//         else{
+//             handlers.handleSuccess(res, audiences, 'Audience query executed', 200);
+//         }
+//     });
+// });
 
 module.exports = router;

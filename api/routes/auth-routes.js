@@ -20,6 +20,8 @@ router.post("/api/signup", function (req, res) {
     }, function (err, user) {
         if (err) throw err;
         if (user){
+            handlers.serverLog("POST /api/signup 409", 'red');
+            handlers.serverLog(JSON.stringify({success: false, msg: 'This User Already Exists'}));
             return res.status(409).send({success: false, msg: 'This User Already Exists'});
         }
         else{
@@ -50,21 +52,12 @@ router.get("/api/auth/:token", function (req, res) {
     var token = req.params.token;
     try{
         var decodedToken = jwt.decode(token, secret);
-        var id = decodedToken._id;
-        User.findOne({_id: id}, function (err, user) {
-            if(err){
-                handlers.handleError(res, err);
-            }
-            else if (user){
-                delete user.password;
-                handlers.handleSuccess(res, user);
-            }
-            else{
-                handlers.handleError(res, 'User doesnt exist', 403);
-            }
-        });
+        delete decodedToken.password;
+        handlers.handleSuccess(res, decodedToken);
     }
     catch(err){
+        handlers.serverLog('Token decode failed');
+        handlers.serverLog(JSON.stringify({success: false, msg: 'Invalid Token'}), 'red');
         handlers.handleError(res, 'Invalid Token', 403);
     }
 });
@@ -75,12 +68,15 @@ function authenticate(req, res, created){
     }, function (err, user) {
         if (err) throw err;
         if (!user){
+            handlers.serverLog("Authentication Failed", "red");
             res.status(403).send({success: false, msg: 'Authentication Failed. No User Found.'});
         }
         else{
             user.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err){
                     var token = jwt.encode(user, secret);
+                    handlers.serverLog('Authentication Success', 'green');
+                    handlers.serverLog(JSON.stringify({success: true, token: token}));
 
                     if (created){
                         handlers.handleSuccess(res, {token: token}, 'Signed up user', 201);
@@ -90,6 +86,8 @@ function authenticate(req, res, created){
                     }
                 }
                 else{
+                    handlers.serverLog('Authentication Failed', 'red');
+                    handlers.serverLog(JSON.stringify({success: false, msg: 'Authentication Failed. Password doesnt match'}));
                     res.status(403).send({success: false, msg: 'Authentication Failed. Password Doesnt Match'});
                 }
             });

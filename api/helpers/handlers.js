@@ -34,7 +34,7 @@ exports.checkAdmin = function (req, res, callback) {
     });
 };
 exports.checkAuth = function (req, res, callback) {
-    var token = req.headers['symatree-auth'];
+    var token = req.headers['theaters-auth'];
     if (!token){
         exports.handleError(res, 'No token provided. Cant authenticate', 403);
         return;
@@ -83,6 +83,12 @@ exports.handleSuccess = function (res, body, message, code){
     }
     body['message'] = getStatusCodeDesc(code)+message;
     res.status(code).json(body);
+};
+exports.serverLog = function (message, color) {
+    if (app.settings.env == 'test'){
+        return;
+    }
+    console.log(colorify(JSON.stringify(message), color));
 };
 function getStatusCodeDesc(code){
     switch(code){

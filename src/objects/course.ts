@@ -1,14 +1,13 @@
-
+/**
+ * Created by ericdufresne on 2017-03-16.
+ */
 export class Course{
-    _id: string;
-    code:string;
-    name: string;
-    userId: string;
-    contactEmail: string;
+  
+    code: string ;
+    name:  string ;
     school: string;
     professor: string;
     semester: string;
-    year: string;
-    description: string;
+    year: number;
 
 }

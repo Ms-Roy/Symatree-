@@ -3,7 +3,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var logger = require('morgan');
 var app = express();
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -15,34 +14,22 @@ var http = require('http');
 
 var authRoutes = require('./api/routes/auth-routes');
 var connectionRoutes = require('./api/routes/connection-routes');
-// var companyRoutes = require('./api/routes/company-routes');
-var courseRoutes = require('./api/routes/course-routes');
-var tutorRoutes = require ('./api/routes/tutor-routes');
-//var courseRoutes = require('./api/routes/course-routes');
-//var productionRoutes = require('./api/routes/production-routes');
 var userRoutes = require('./api/routes/user-routes');
-//var adminRoutes = require('./api/routes/admin-routes');
-//var fileRoutes = require('./api/routes/files');
+var adminRoutes = require('./api/routes/admin-routes');
 
 app.use(bodyParser.json());
 app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 app.use(passport.initialize());
+
 app.use('/', authRoutes);
 app.use('/', connectionRoutes);
-// app.use('/',companyRoutes);
-app.use('/',courseRoutes);
-app.use('/',tutorRoutes);
-//app.use('/', productionRoutes);
+
 app.use('/', userRoutes);
-//app.use('/', courseRoutes);
-//app.use('/', adminRoutes);
-//app.use('/', fileRoutes);
+
+app.use('/', adminRoutes);
 
 app.settings.env = app.settings.env || 'production';
-if (app.settings.env != 'test'){
-    app.use(logger('dev'));
-}
 
 var config = require('./api/config').config;
 

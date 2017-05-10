@@ -3,22 +3,20 @@ var router = express.Router();
 var passport = require('passport');
 var config = require('../config').config;
 var jwt = require('jwt-simple');
-var Teach = require('../db/schema/teach').Teach;
+var CourseTeach = require('../db/schema/courseTeach').CouseTeach;
 var User = require('../db/schema/user').User;
 var mongoose = require('mongoose');
 var handlers = require('../helpers/handlers');
 
-router.post('/api/teaches', function (req, res) {
+router.post('/api/courseTeach', function (req, res) {
     handlers.checkAuth(req, res, function (user) {
-        var teach = new Teach();
-        teach.userId = user._id;
-        teach.code = req.body.code;
-        teach.isTeaching = req.body.isTeaching;
-        teach.price = req.body.price;
-        teach.code = req.body.code;
-        teach.form = teach.startDate;
+        var courseTeach = new CourseTeach();
+        courseTeach.userId = user._id;
+        courseTeach.code = req.body.code;
+        courseTeach.name = req.body.name;
+        courseTeach.school = req.body.school;
 
-        teach.save(function (err, newTeach) {
+        courseTeach.save(function (err, newCourseTeach) {
             if (err){
                 if (err.code == 11000 || err.code == 11001){
                     handlers.handleError(res, err, 409);
@@ -28,44 +26,14 @@ router.post('/api/teaches', function (req, res) {
                 }
             }
             else{
-                handlers.handleSuccess(res, newTeach, 'Created new teach', 201);
+                handlers.handleSuccess(res, newCourseTeach, 'Added new course', 201);
             }
         });
     });
 });
-/* returns all courses in the system */
-/* returns all productions in the system */
-router.get('/api/teaches', function (req, res) {
 
-    //Any search parameters can go in here
-    var searchParams = {
-
-    };
-    var query = Teach.find(searchParams);
-    if (req.query.limit){
-        query.limit(parseInt(req.query.limit));
-    }
-    if (req.query.offset){
-        query.skip(parseInt(req.query.offset));
-    }
-    if (req.query.sortBy){
-        var sortParams = {};
-        sortParams[req.query.sortBy] = -1;
-        query.sort(sortParams);
-    }
-
-    query.exec(function (err, teaches) {
-        if (err){
-            handlers.handleError(res, err);
-        }
-        else{
-            handlers.handleSuccess(res, teaches, 'Teaches query executed', 200);
-        }
-    });
-});
-
-router.get('/api/teaches/:id', function (req, res) {
-    Teach.findById({_id: req.params.id}, function (err, teach) {
+router.get('/api/courseTeach/:id', function (req, res) {
+    CourseTeach.findById({_id: req.params.id}, function (err, courseTeach) {
         if (err){
             if (err.name == 'CastError'){
                 handlers.handleSuccess(res, null);
@@ -74,36 +42,36 @@ router.get('/api/teaches/:id', function (req, res) {
                 handlers.handleError(res, err);
             }
         }
-        else if (teach){
-            handlers.handleSuccess(res, teach, 'Teach with id: '+req.params.id+' found');
+        else if (courseTeach){
+            handlers.handleSuccess(res, courseTeach, 'courseTeach with id: '+req.params.id+' found');
         }
         else{
             handlers.handleSuccess(res, null);
         }
     });
 });
-router.put('/api/teaches/:id', function (req, res) {
+router.put('/api/courseTeach/:id', function (req, res) {
     handlers.checkAuth(req, res, function (user) {
-        Teach.findById({_id: req.params.id}, function (err, teach) {
+        CourseTeach.findById({_id: req.params.id}, function (err, courseTeach) {
             if (err){
                 if (err.name == 'CastError'){
-                    handlers.handleError(res, 'Teach does not exist.', 404);
+                    handlers.handleError(res, 'courseTeach does not exist.', 404);
                 }
                 else{
                     handlers.handleError(res, err);
                 }
             }
-            else if (teach){
+            else if (courseTeach){
                 var uid1 = user._id.toString();
-                var uid2 = teach.userId.toString();
+                var uid2 = courseTeach.userId.toString();
                 if (uid1 != uid2){
-                    handlers.handleError(res, 'Access denied when modifying Teach', 403);
+                    handlers.handleError(res, 'Access denied when modifying courseTeach', 403);
                     return;
                 }
-                var teachUpdate = req.body;
-                delete teachUpdate._id;
-                delete teachUpdate.userId;
-                teach.update(teachUpdate, {runValidators: true}, function (err) {
+                var courseTeachUpdate = req.body;
+                delete courseTeachUpdate._id;
+                delete courseTeachUpdate.userId;
+                courseTeach.update(courseTeachUpdate, {runValidators: true}, function (err) {
                     if (err){
                         if (err.code == 11000 || err.code == 11001){
                             handlers.handleError(res, err, 409);
@@ -113,19 +81,19 @@ router.put('/api/teaches/:id', function (req, res) {
                         }
                     }
                     else{
-                        handlers.handleSuccess(res, teachUpdate, 'Updated teach', 200);
+                        handlers.handleSuccess(res, courseTeachUpdate, 'Updated courseTeach', 200);
                     }
                 })
             }
             else{
-                handlers.handleError(res, 'Teach does not exist', 404);
+                handlers.handleError(res, 'courseTeach does not exist', 404);
             }
         });
     })
 
 });
 
-router.get('/api/users/:id/teaches', function (req, res) {
+router.get('/api/users/:id/courseTeach', function (req, res) {
    User.findById({_id: req.params.id}, function (err, user) {
        if (err){
            if (err.name == 'CastError'){
@@ -136,13 +104,13 @@ router.get('/api/users/:id/teaches', function (req, res) {
            }
        }
        else if (user){
-           var query = Teach.find({userId: req.params.id});
-           query.exec(function (err, teaches) {
+           var query = CourseTeach.find({userId: req.params.id});
+           query.exec(function (err, courseTeach) {
                if (err){
                    handlers.handleError(res, err);
                }
                else{
-                   handlers.handleSuccess(res, teaches, 'Query for teaches created by user: '+req.params.id+' completed');
+                   handlers.handleSuccess(res, courseTeach, 'Query for courseTeach created by user: '+req.params.id+' completed');
                }
            });
        }
@@ -151,25 +119,25 @@ router.get('/api/users/:id/teaches', function (req, res) {
        }
    })
 });
-router.delete('/api/teaches/:id', function (req, res) {
+router.delete('/api/courseTeach/:id', function (req, res) {
     handlers.checkAuth(req, res, function (user) {
-        Teach.findById({_id: req.params.id}, function (err, teach) {
+        CourseTeach.findById({_id: req.params.id}, function (err, courseTeach) {
             if (err){
                 if (err.name == 'CastError'){
-                    handlers.handleError(res, 'Teach doesnt exist', 404);
+                    handlers.handleError(res, 'courseTeach doesnt exist', 404);
                 }
                 else{
                     handlers.handleError(res, err);
                 }
             }
-            else if (teach){
-                var uid1 = teach.userId.toString();
+            else if (courseTeach){
+                var uid1 = courseTeach.userId.toString();
                 var uid2 = user._id.toString();
                 if (uid1 != uid2){
-                    handlers.handleError(res, 'Access denied when deleting teach', 403);
+                    handlers.handleError(res, 'Access denied when deleting courseTeach', 403);
                     return;
                 }
-                teach.remove(function (err) {
+                courseTeach.remove(function (err) {
                     if (err){
                         handlers.handleError(res, err);
                     }

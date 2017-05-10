@@ -8,14 +8,13 @@ export class PhoneNumber{
 export class User{
     _id: string;
     email: string;
-    pictureURL: string;
+    password:string;
     role: string;
+    firstName:string;
+    lastName:string;
     phoneNumbers: PhoneNumber[];
     programOfStudy: string;
     school: string;
-    firstName: string;
-    lastName: string;
-
 
     constructor(){
         this.phoneNumbers = [];
